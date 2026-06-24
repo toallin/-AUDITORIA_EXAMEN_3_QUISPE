@@ -3,10 +3,17 @@ import { Box, Paper, Typography, TextField, IconButton, CircularProgress, Button
 import SendIcon from '@mui/icons-material/Send';
 import AddIcon from '@mui/icons-material/Add';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ReactMarkdown from 'react-markdown';
-import { type Message } from '../App';
+import { type Message, type ChatSession } from '../App';
 
 interface ChatLayoutProps {
+  sessions: ChatSession[];
+  currentSessionId: string;
+  onSelectSession: (id: string) => void;
+  onCreateSession: () => void;
+  onDeleteSession: (id: string, e: React.MouseEvent) => void;
   messages: Message[];
   input: string;
   setInput: (value: string) => void;
@@ -19,6 +26,7 @@ interface ChatLayoutProps {
 }
 
 export default function ChatLayout({ 
+  sessions, currentSessionId, onSelectSession, onCreateSession, onDeleteSession,
   messages, input, setInput, handleSubmit, isLoading, 
   showFeedbackButtons, onFeedback,
   showFollowUpOptions, onFollowUpChoice
@@ -30,16 +38,77 @@ export default function ChatLayout({
 
   return (
     <Box sx={{ display: 'flex', height: '100vh', bgcolor: '#f5f5f5' }}>
+      {/* Sidebar de Historial de Chats */}
       <Box sx={{ width: 280, bgcolor: '#ffffff', borderRight: '1px solid #e0e0e0', display: { xs: 'none', md: 'flex' }, flexDirection: 'column' }}>
         <Box sx={{ p: 2, borderBottom: '1px solid #e0e0e0' }}>
-          <Button variant="outlined" fullWidth startIcon={<AddIcon />} onClick={() => window.location.reload()}>
+          <Button variant="outlined" fullWidth startIcon={<AddIcon />} onClick={onCreateSession}>
             Nueva Conversación
           </Button>
         </Box>
-        <Box sx={{ p: 2 }}>
-          <Typography variant="body2" color="text.secondary">El historial de chats se ha omitido en esta versión.</Typography>
+        <Box sx={{ flex: 1, overflowY: 'auto', p: 1 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ px: 2, py: 1, display: 'block', fontWeight: 600 }}>
+            HISTORIAL DE CHATS
+          </Typography>
+          <Stack spacing={0.5} sx={{ mt: 0.5 }}>
+            {sessions.map((session) => {
+              const isActive = session.id === currentSessionId;
+              return (
+                <Box
+                  key={session.id}
+                  onClick={() => onSelectSession(session.id)}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    px: 2,
+                    py: 1,
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    bgcolor: isActive ? '#f0f4ff' : 'transparent',
+                    color: isActive ? 'primary.main' : 'text.primary',
+                    '&:hover': {
+                      bgcolor: isActive ? '#f0f4ff' : '#f5f5f5',
+                      '& .delete-btn': { opacity: 1 }
+                    },
+                    transition: 'background-color 0.2s',
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, flex: 1 }}>
+                    <ChatBubbleOutlineIcon fontSize="small" sx={{ color: isActive ? 'primary.main' : 'text.secondary', flexShrink: 0 }} />
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: isActive ? 600 : 400,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {session.title}
+                    </Typography>
+                  </Box>
+                  <IconButton
+                    className="delete-btn"
+                    size="small"
+                    onClick={(e) => onDeleteSession(session.id, e)}
+                    sx={{
+                      opacity: 0,
+                      transition: 'opacity 0.2s',
+                      color: 'text.secondary',
+                      '&:hover': { color: 'error.main' },
+                      p: 0.5,
+                    }}
+                  >
+                    <DeleteOutlineIcon fontSize="small" />
+                  </IconButton>
+                </Box>
+              );
+            })}
+          </Stack>
         </Box>
       </Box>
+
+      {/* Panel del Chat */}
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', p: 2, maxHeight: '100vh' }}>
         <Paper elevation={2} sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <Box sx={{ p: 2, borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center', gap: 2 }}>

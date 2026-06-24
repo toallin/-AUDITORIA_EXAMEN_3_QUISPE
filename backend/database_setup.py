@@ -1,9 +1,13 @@
 # backend/database_setup.py
+import os
 import sqlite3
 
-DB_PATH = "tickets.db"
+DB_PATH = "db/tickets.db"
 
 def setup_database():
+    db_dir = os.path.dirname(DB_PATH)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 

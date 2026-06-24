@@ -40,7 +40,10 @@ logging.getLogger("uvicorn.access").handlers = [InterceptHandler()]
 
 # --- CONFIGURACIÓN Y MODELOS ---
 VECTOR_STORE_DIR = "vector_store"
-DB_PATH = "tickets.db"
+DB_PATH = "db/tickets.db"
+from database_setup import setup_database
+setup_database()
+
 app = FastAPI(title="Corporate EPIS Pilot API - Advanced Flow")
 app.add_middleware(
     CORSMiddleware,
