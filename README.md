@@ -50,7 +50,7 @@ A continuación se detallan las partes del código que fueron corregidas para cu
 
 ### Anexo a: Solución al Error de Montaje en Docker Compose
 *Aquí se muestra la terminal con la correcta ejecución de `docker-compose up --build` después de cambiar el volumen:*  
-![Anexo  a - Docker Compose](./evidencias/evidencia1r.png)
+![Anexo  a - Docker Compose](./evidencias/evidencia1.png)
 
 ### Evidencia 2: Creación Dinámica del Directorio de Base de Datos
 *Aquí se muestra la lógica aplicada en `database_setup.py` y `main.py` para levantar SQLite:*  
