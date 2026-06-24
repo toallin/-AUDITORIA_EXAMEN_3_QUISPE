@@ -77,3 +77,33 @@
 ### vista del pagina funcionando
 *Aquí se muestra la pagina funcionando al 100%
 ![Anexo  a - Docker Compose](./evidencias/pagina.png)
+
+---
+
+# INFORME FINAL DE AUDITORÍA DE SISTEMAS
+
+## CARÁTULA
+* **Entidad Auditada:** [Nombre de la entidad o dependencia]
+* **Ubicación:** [tacna, tacna, tacna, tacna]
+* **Período auditado:** [Desde 24/06/2026 hasta 24/06/2026 ]
+* **Equipo Auditor:** [cristian aldair quispe levano]
+* **Fecha del informe:** [24/06/2026 ]
+
+---
+
+## ÍNDICE
+1. [Resumen Ejecutivo](#1-resumen-ejecutivo)
+2. [Antecedentes](#2-antecedentes)
+3. [Objetivos de la Auditoría](#3-objetivos-de-la-auditoría)
+4. [Alcance de la Auditoría](#4-alcance-de-la-auditoría)
+5. [Normativa y Criterios de Evaluación](#5-normativa-y-criterios-de-evaluación)
+6. [Metodología y Enfoque](#6-metodología-y-enfoque)
+7. [Hallazgos y Observaciones](#7-hallazgos-y-observaciones)
+8. [Análisis de Riesgos](#8-análisis-de-riesgos)
+9. [Recomendaciones](#9-recomendaciones)
+10. [Conclusiones](#10-conclusiones)
+11. [Plan de Acción y Seguimiento](#11-plan-de-acción-y-seguimiento)
+12. [Anexos](#12-anexos)
+
+---
+
