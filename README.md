@@ -25,9 +25,9 @@ A continuación se detallan las partes del código que fueron corregidas para cu
 
 ### A. Configuración de Volúmenes en Docker Compose
 * **Archivo:** [docker-compose.yml](file:///c:/Users/HP/Downloads/123123/-AUDITORIA_EXAMEN_3_QUISPE/docker-compose.yml)
-* **Línea Modificada:** Línea 11
 * **Corrección:** Se cambió el montaje directo del archivo `./backend/tickets.db:/app/tickets.db` por el montaje de la carpeta `./backend/db:/app/db`.
-* **Motivo:** Previene que Docker Desktop en Windows intente montar un archivo inexistente como si fuese un directorio, lo cual arrojaba el error de montaje en el daemon.
+* **Evidencia:**anexo A
+
 
 ### B. Inicialización Dinámica de la Base de Datos
 * **Archivo:** [backend/database_setup.py](file:///c:/Users/HP/Downloads/123123/-AUDITORIA_EXAMEN_3_QUISPE/backend/database_setup.py)
@@ -47,11 +47,10 @@ A continuación se detallan las partes del código que fueron corregidas para cu
 
 ## 4. ANEXOS (EVIDENCIAS DE LA CORRECCIÓN)
 
-*Coloca tus capturas de pantalla de evidencia en la carpeta `./evidencias` con los nombres indicados abajo para que aparezcan automáticamente en este documento:*
 
-### Evidencia 1: Solución al Error de Montaje en Docker Compose
+### Anexo a: Solución al Error de Montaje en Docker Compose
 *Aquí se muestra la terminal con la correcta ejecución de `docker-compose up --build` después de cambiar el volumen:*  
-![Evidencia 1 - Docker Compose](./evidencias/evidencia_1_docker.png)
+![Anexo  a - Docker Compose](./evidencias/evidencia1r.png)
 
 ### Evidencia 2: Creación Dinámica del Directorio de Base de Datos
 *Aquí se muestra la lógica aplicada en `database_setup.py` y `main.py` para levantar SQLite:*  
